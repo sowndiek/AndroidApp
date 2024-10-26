@@ -28,17 +28,21 @@
         android:layout_marginBottom="23dp"
         android:text="Next"
         android:backgroundTint="#6C63FF"
+        android:textSize="20dp"
+        android:drawableRight="@drawable/vector"
         />
 
     <CheckBox
         android:id="@+id/remMe"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:text="Remember me"
         android:textSize="9dp"
         tools:layout_editor_absoluteX="45dp"
         tools:layout_editor_absoluteY="475dp"
+        android:buttonTint="#CBCBCB"
         />
+
 
     <EditText
         android:id="@+id/firstLine"
@@ -50,6 +54,8 @@
         android:hint="Enter your email"
         android:paddingLeft="22dp"
         android:textSize="14dp"
+        android:drawableEnd="@drawable/mail"
+        android:paddingRight="15dp"
         />
     <EditText
         android:id="@+id/secondLine"
@@ -61,16 +67,58 @@
         android:hint="Password"
         android:paddingLeft="22dp"
         android:textSize="14dp"
+        android:drawableEnd="@drawable/lock"
+        android:paddingRight="15dp"
         />
 
     <ImageView
+        android:id="@+id/pic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/main_pic"
-        tools:layout_editor_absoluteX="52dp"
+        tools:layout_editor_absoluteX="67dp"
         tools:layout_editor_absoluteY="42dp" />
-    />
 
+    <TextView
+        android:id="@+id/forgetPass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="220dp"
+        android:layout_marginBottom="280dp"
+        android:text="Forget password ?"
+        android:textColor="#6C63FF"
+        android:textSize="9dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="580dp"
+        android:layout_marginRight="52dp"
+        android:textSize="24dp"
+        android:textColor="#252525"
+        />
+
+    <TextView
+        android:id="@+id/signIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="sign in to access your account"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="554dp"
+        android:layout_marginRight="26dp"
+        android:textSize="14dp"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
