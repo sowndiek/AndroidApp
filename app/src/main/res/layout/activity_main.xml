@@ -6,119 +6,138 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
+    <!-- Ctrl + alt + l -->
     <TextView
-        android:id="@+id/newmem"
+        android:id="@+id/newMember"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New member? Register now"
+        android:layout_marginStart="73dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginEnd="95dp"
+        android:layout_marginBottom="58dp"
+        android:hint="@string/new_member"
+        android:textSize="13dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonNext" />
+
+    <Button
+        android:id="@+id/buttonNext"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="97dp"
+        android:backgroundTint="#6C63FF"
+        android:drawableRight="@drawable/vector"
+        android:text="Next"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="58dp"
-        android:textSize="13dp"
-        />
-    <Button
-        android:id="@+id/butNext"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        app:layout_constraintBottom_toTopOf="@id/newmem"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="23dp"
-        android:text="Next"
-        android:backgroundTint="#6C63FF"
-        android:textSize="20dp"
-        android:drawableRight="@drawable/vector"
-        />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <CheckBox
-        android:id="@+id/remMe"
+        android:id="@+id/rememberMe"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
+        android:buttonTint="#CBCBCB"
+        android:paddingTop="17dp"
         android:text="Remember me"
         android:textSize="9dp"
-        tools:layout_editor_absoluteX="45dp"
-        tools:layout_editor_absoluteY="475dp"
-        android:buttonTint="#CBCBCB"
-        />
+        app:layout_constraintStart_toStartOf="@+id/enterPass"
+        app:layout_constraintTop_toBottomOf="@+id/enterPass" />
 
 
-    <EditText
-        android:id="@+id/firstLine"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:background="@drawable/edittextshape"
-        tools:layout_editor_absoluteX="45dp"
-        tools:layout_editor_absoluteY="350dp"
-        android:hint="Enter your email"
-        android:paddingLeft="22dp"
-        android:textSize="14dp"
-        android:drawableEnd="@drawable/mail"
-        android:paddingRight="15dp"
-        />
-    <EditText
-        android:id="@+id/secondLine"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:background="@drawable/edittextshape"
-        tools:layout_editor_absoluteX="45dp"
-        tools:layout_editor_absoluteY="425dp"
-        android:hint="Password"
-        android:paddingLeft="22dp"
-        android:textSize="14dp"
-        android:drawableEnd="@drawable/lock"
-        android:paddingRight="15dp"
-        />
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/enterEmail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="425dp"
+        android:hint="Email"
+        app:endIconDrawable="@drawable/mail"
+        app:endIconMode="custom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="22dp"
+            android:paddingRight="15dp"
+            android:textSize="14sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/enterPass"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:hint="@string/input_password_hint"
+        app:endIconDrawable="@drawable/lock"
+        app:endIconMode="custom"
+        app:layout_constraintEnd_toEndOf="@+id/enterEmail"
+        app:layout_constraintStart_toStartOf="@+id/enterEmail"
+        app:layout_constraintTop_toBottomOf="@+id/enterEmail">
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="22dp"
+            android:paddingRight="15dp"
+            android:textSize="14dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <ImageView
-        android:id="@+id/pic"
+        android:id="@+id/mainPic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="102dp"
+        android:layout_marginTop="42dp"
         android:src="@drawable/main_pic"
-        tools:layout_editor_absoluteX="67dp"
-        tools:layout_editor_absoluteY="42dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/forgetPass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="220dp"
-        android:layout_marginBottom="280dp"
+        android:paddingTop="17dp"
         android:text="Forget password ?"
         android:textColor="#6C63FF"
         android:textSize="9dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintEnd_toEndOf="@id/enterPass"
+        app:layout_constraintTop_toBottomOf="@+id/enterPass" />
 
     <TextView
-        android:id="@+id/welcome"
+        android:id="@+id/welcomeBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="173dp"
+        android:layout_marginEnd="98dp"
         android:text="Welcome back"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="#252525"
+        android:textSize="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="580dp"
-        android:layout_marginRight="52dp"
-        android:textSize="24dp"
-        android:textColor="#252525"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/signIn"
+        android:id="@+id/signInToAccess"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="77dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="76dp"
         android:text="sign in to access your account"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="554dp"
-        android:layout_marginRight="26dp"
-        android:textSize="14dp"
-        />
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/welcomeBack"
+        app:layout_constraintStart_toStartOf="@+id/welcomeBack"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeBack" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

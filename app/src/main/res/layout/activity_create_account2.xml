@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -19,117 +20,112 @@
         android:id="@+id/welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="575dp"
         android:text="Get Started"
+        android:textColor="#252525"
+        android:textSize="36dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="575dp"
-        android:layout_marginRight="4dp"
-        android:textSize="36dp"
-        android:textColor="#252525"
-        />
+        app:layout_constraintStart_toStartOf="parent" />
+
     <TextView
         android:id="@+id/freeAc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="554dp"
         android:text="by creating a free account."
+        android:textColor="#252525"
+        android:textSize="14dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="554dp"
-        android:textSize="14dp"
-        android:textColor="#252525"
-        />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/firstLine"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:background="@drawable/edittextshape"
-        tools:layout_editor_absoluteX="45dp"
-        tools:layout_editor_absoluteY="290dp"
+        android:drawableEnd="@drawable/user"
         android:hint="Full name"
         android:paddingLeft="22dp"
-        android:textSize="14dp"
-        android:drawableEnd="@drawable/user"
         android:paddingRight="15dp"
-        />
+        android:textSize="14dp"
+        tools:layout_editor_absoluteX="45dp"
+        tools:layout_editor_absoluteY="290dp" />
+
     <EditText
         android:id="@+id/secondLine"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:background="@drawable/edittextshape"
-        tools:layout_editor_absoluteX="45dp"
-        tools:layout_editor_absoluteY="350dp"
+        android:drawableEnd="@drawable/mail"
         android:hint="Valid email"
         android:paddingLeft="22dp"
-        android:textSize="14dp"
-        android:drawableEnd="@drawable/mail"
         android:paddingRight="15dp"
-        />
+        android:textSize="14dp"
+        tools:layout_editor_absoluteX="45dp"
+        tools:layout_editor_absoluteY="350dp" />
+
     <EditText
         android:id="@+id/thirdLine"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:background="@drawable/edittextshape"
-        tools:layout_editor_absoluteX="45dp"
-        tools:layout_editor_absoluteY="410dp"
+        android:drawableEnd="@drawable/phone"
         android:hint="Phone number"
         android:paddingLeft="22dp"
-        android:textSize="14dp"
-        android:drawableEnd="@drawable/phone"
         android:paddingRight="15dp"
-        />
+        android:textSize="14dp"
+        tools:layout_editor_absoluteX="45dp"
+        tools:layout_editor_absoluteY="410dp" />
+
     <EditText
         android:id="@+id/fourthLine"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:background="@drawable/edittextshape"
-        tools:layout_editor_absoluteX="45dp"
-        tools:layout_editor_absoluteY="470dp"
+        android:drawableEnd="@drawable/lock"
         android:hint="Strong password"
         android:paddingLeft="22dp"
-        android:textSize="14dp"
-        android:drawableEnd="@drawable/lock"
         android:paddingRight="15dp"
-        />
+        android:textSize="14dp"
+        tools:layout_editor_absoluteX="45dp"
+        tools:layout_editor_absoluteY="470dp" />
+
     <CheckBox
         android:id="@+id/remMe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:buttonTint="#CBCBCB"
         android:text="By checking the box you agree to our Terms and Conditions."
         android:textSize="9dp"
         tools:layout_editor_absoluteX="45dp"
-        tools:layout_editor_absoluteY="515dp"
-        android:buttonTint="#CBCBCB"
-        />
+        tools:layout_editor_absoluteY="515dp" />
+
     <Button
         android:id="@+id/butNext"
         android:layout_width="300dp"
         android:layout_height="50dp"
+        android:layout_marginBottom="23dp"
+        android:backgroundTint="#6C63FF"
+        android:drawableRight="@drawable/vector"
+        android:text="Next"
+        android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@id/alMem"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="23dp"
-        android:text="Next"
-        android:backgroundTint="#6C63FF"
-        android:textSize="20dp"
-        android:drawableRight="@drawable/vector"
-        />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/alMem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="58dp"
         android:text="Already a member? Log In"
+        android:textSize="13dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="58dp"
-        android:textSize="13dp"
-        />
-
-
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
