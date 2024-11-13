@@ -2,4 +2,11 @@
     <string name="app_name">My Application</string>
     <string name="input_password_hint">Enter Password</string>
     <string name="new_member">New member? Register now</string>
+    <string name="valid_email">Valid email</string>
+    <string name="full_name">Full name</string>
+    <string name="phone_number">Phone number</string>
+    <string name="strong_password">Strong password</string>
+    <string name="already_member">Already a member? Log in</string>
+    <string name="terms_and_conditions">By checking the box you agree to our Terms and Conditions.</string>
+
 </resources>

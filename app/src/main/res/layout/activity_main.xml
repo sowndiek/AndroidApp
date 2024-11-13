@@ -16,7 +16,7 @@
         android:layout_marginEnd="95dp"
         android:layout_marginBottom="58dp"
         android:hint="@string/new_member"
-        android:textSize="13dp"
+        android:textSize="13sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonNext" />
@@ -27,9 +27,9 @@
         android:layout_height="50dp"
         android:layout_marginBottom="97dp"
         android:backgroundTint="#6C63FF"
-        android:drawableRight="@drawable/vector"
+        android:drawableEnd="@drawable/vector"
         android:text="Next"
-        android:textSize="20dp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -41,9 +41,10 @@
         android:buttonTint="#CBCBCB"
         android:paddingTop="17dp"
         android:text="Remember me"
-        android:textSize="9dp"
+        android:textSize="9sp"
         app:layout_constraintStart_toStartOf="@+id/enterPass"
-        app:layout_constraintTop_toBottomOf="@+id/enterPass" />
+        app:layout_constraintTop_toBottomOf="@+id/enterPass"
+        tools:ignore="SmallSp" />
 
 
     <com.google.android.material.textfield.TextInputLayout
@@ -51,20 +52,20 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
+        android:layout_marginTop="32dp"
         android:layout_marginRight="30dp"
-        android:layout_marginBottom="425dp"
         android:hint="Email"
         app:endIconDrawable="@drawable/mail"
         app:endIconMode="custom"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mainPic">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="22dp"
-            android:paddingRight="15dp"
+            android:paddingStart="22dp"
+            android:paddingEnd="15dp"
             android:textSize="14sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -84,9 +85,9 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="22dp"
-            android:paddingRight="15dp"
-            android:textSize="14dp" />
+            android:paddingStart="22dp"
+            android:paddingEnd="15dp"
+            android:textSize="14sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -94,7 +95,7 @@
         android:id="@+id/mainPic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="102dp"
+        android:layout_marginStart="102dp"
         android:layout_marginTop="42dp"
         android:src="@drawable/main_pic"
         app:layout_constraintEnd_toEndOf="parent"
@@ -108,9 +109,10 @@
         android:paddingTop="17dp"
         android:text="Forget password ?"
         android:textColor="#6C63FF"
-        android:textSize="9dp"
+        android:textSize="9sp"
         app:layout_constraintEnd_toEndOf="@id/enterPass"
-        app:layout_constraintTop_toBottomOf="@+id/enterPass" />
+        app:layout_constraintTop_toBottomOf="@+id/enterPass"
+        tools:ignore="SmallSp" />
 
     <TextView
         android:id="@+id/welcomeBack"
@@ -118,10 +120,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
         android:layout_marginTop="173dp"
-        android:layout_marginEnd="98dp"
+        android:layout_marginEnd="70dp"
         android:text="Welcome back"
         android:textColor="#252525"
-        android:textSize="24dp"
+        android:textSize="27sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
