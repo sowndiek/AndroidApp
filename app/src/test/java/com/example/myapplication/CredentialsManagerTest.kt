@@ -1,13 +1,11 @@
 package com.example.myapplication
 
-import com.example.yourapp.CredentialsManager
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 
 class CredentialsManagerTest {
-
     private lateinit var credentialsManager: CredentialsManager
 
     @Before

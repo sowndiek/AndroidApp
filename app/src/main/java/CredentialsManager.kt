@@ -1,4 +1,4 @@
-package com.example.yourapp
+package com.example.myapplication
 
 class CredentialsManager {
     private val emailPattern =
