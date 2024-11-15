@@ -42,12 +42,12 @@
         android:buttonTint="#CBCBCB"
         android:text="Remember me"
         android:textSize="9sp"
-        app:layout_constraintStart_toStartOf="@+id/enterPass"
-        app:layout_constraintTop_toBottomOf="@+id/enterPass"
+        app:layout_constraintStart_toStartOf="@+id/passwordTextInputLayout"
+        app:layout_constraintTop_toBottomOf="@+id/passwordTextInputLayout"
         tools:ignore="SmallSp" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/enterEmail"
+        android:id="@+id/emailTextInputLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
@@ -61,6 +61,7 @@
         app:layout_constraintTop_toBottomOf="@id/mainPic">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/emailEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingStart="22dp"
@@ -69,18 +70,19 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/enterPass"
+        android:id="@+id/passwordTextInputLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:hint="@string/input_password_hint"
         app:endIconDrawable="@drawable/lock"
         app:endIconMode="custom"
-        app:layout_constraintEnd_toEndOf="@+id/enterEmail"
-        app:layout_constraintStart_toStartOf="@+id/enterEmail"
-        app:layout_constraintTop_toBottomOf="@+id/enterEmail">
+        app:layout_constraintEnd_toEndOf="@+id/emailTextInputLayout"
+        app:layout_constraintStart_toStartOf="@+id/emailTextInputLayout"
+        app:layout_constraintTop_toBottomOf="@+id/emailTextInputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/passwordEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingStart="22dp"
@@ -104,12 +106,12 @@
         android:id="@+id/forgetPass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="17dp"
+        android:layout_marginTop="25dp"
         android:text="Forget password ?"
         android:textColor="#6C63FF"
         android:textSize="9sp"
-        app:layout_constraintEnd_toEndOf="@id/enterPass"
-        app:layout_constraintTop_toBottomOf="@+id/enterPass"
+        app:layout_constraintEnd_toEndOf="@id/passwordTextInputLayout"
+        app:layout_constraintTop_toBottomOf="@+id/passwordTextInputLayout"
         tools:ignore="SmallSp" />
 
     <TextView

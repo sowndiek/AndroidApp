@@ -14,35 +14,103 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 
 class MainActivity : AppCompatActivity() {
+
+    private val credentialsManager = CredentialsManager()
+
+    // Properties for views using custom getters
+    private val emailInputLayout: TextInputLayout
+        get() = findViewById(R.id.emailTextInputLayout)
+
+    private val emailEditText: TextInputEditText
+        get() = findViewById(R.id.emailEditText)
+
+    private val passwordInputLayout: TextInputLayout
+        get() = findViewById(R.id.passwordTextInputLayout)
+
+    private val passwordEditText: TextInputEditText
+        get() = findViewById(R.id.passwordEditText)
+
+    private val nextButton: Button
+        get() = findViewById(R.id.buttonNext)
+
+    private val newMemberTextView: TextView
+        get() = findViewById(R.id.newMember)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
-        // Set window insets for edge-to-edge layout
+
+        // Set up edge-to-edge layout
+        setupEdgeToEdgeLayout()
+
+        // Set up the button click listener to handle login
+        nextButton.setOnClickListener {
+            validateAndLogin()
+        }
+
+        // Set up the "Register now" clickable span
+        setupRegisterNowTextView()
+    }
+
+    private fun setupEdgeToEdgeLayout() {
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        // Set up the button click listener to navigate to Create_Account2 activity
-        val button = findViewById<Button>(R.id.buttonNext)
-        button.setOnClickListener {
-            val intent = Intent(this, Create_Account2::class.java)
-            startActivity(intent)
+    }
+
+    private fun validateAndLogin() {
+        val email = emailEditText.text.toString()
+        val password = passwordEditText.text.toString()
+
+        var isValid = true
+
+        // Validate email
+        if (!credentialsManager.isEmailValid(email)) {
+            emailInputLayout.error = "Invalid email format"
+            isValid = false
+        } else {
+            emailInputLayout.error = null
         }
-        // Set up the clickable "Register now" part of the TextView
-        val newMemberTextView =
-            findViewById<TextView>(R.id.newMember)  // Adjust with your actual TextView ID
+
+        // Validate password
+        if (!credentialsManager.isPasswordValid(password)) {
+            passwordInputLayout.error = "Password cannot be empty"
+            isValid = false
+        } else {
+            passwordInputLayout.error = null
+        }
+
+        // Check hardcoded credentials if validation passed
+        if (isValid && credentialsManager.areCredentialsValid(email, password)) {
+            emailInputLayout.error = null
+            passwordInputLayout.error = null
+            navigateToCreateAccount2()
+        } else if (isValid) {
+            passwordInputLayout.error = "Invalid credentials"
+        }
+    }
+
+    private fun navigateToCreateAccount2() {
+        val intent = Intent(this, Create_Account2::class.java)
+        startActivity(intent)
+        finish() // Optional: Close this activity
+    }
+
+    private fun setupRegisterNowTextView() {
         val fullText = "New Member? Register now"
         val spannableString = SpannableString(fullText)
-        // Color and make "Register now" clickable
-        val registerNowColor =
-            ContextCompat.getColor(this, R.color.blue)
+
+        val registerNowColor = ContextCompat.getColor(this, R.color.blue)
         val startIndex = fullText.indexOf("Register now")
         val endIndex = startIndex + "Register now".length
+
         // Apply color span
         spannableString.setSpan(
             ForegroundColorSpan(registerNowColor),
@@ -50,10 +118,10 @@ class MainActivity : AppCompatActivity() {
             endIndex,
             SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE
         )
-        // Apply clickable span
+
+        // Make "Register now" clickable and handle click
         spannableString.setSpan(object : ClickableSpan() {
             override fun onClick(widget: View) {
-                // Navigate to RegisterActivity on click
                 val intent = Intent(this@MainActivity, RegisterActivity::class.java)
                 startActivity(intent)
             }
