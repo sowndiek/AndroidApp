@@ -4,6 +4,7 @@ import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
+import org.junit.Assert.assertEquals
 
 class CredentialsManagerTest {
     private lateinit var credentialsManager: CredentialsManager
@@ -58,6 +59,44 @@ class CredentialsManagerTest {
         val password = "password123"
         val result = credentialsManager.isPasswordValid(password)
         assertTrue(result)
+    }
+
+    @Test
+    fun givenUniqueEmail_whenRegister_thenAddAccount() {
+        val credentialsManager = CredentialsManager()
+
+        // Register a new account
+        val result = credentialsManager.register(
+            fullName = "John Doe",
+            email = "unique@example.com",
+            phone = "123456789",
+            password = "securePassword123"
+        )
+
+        // Assert that the registration was successful
+        assertEquals(true, result)
+    }
+
+    @Test
+    fun givenDuplicateEmail_whenRegister_thenReturnError() {
+        val credentialsManager = CredentialsManager()
+
+        // Register the same email twice
+        credentialsManager.register(
+            fullName = "John Doe",
+            email = "duplicate@example.com",
+            phone = "123456789",
+            password = "securePassword123"
+        )
+        val result = credentialsManager.register(
+            fullName = "Jane Doe",
+            email = "duplicate@example.com",
+            phone = "987654321",
+            password = "differentPassword123"
+        )
+
+        // Assert that the second registration failed
+        assertEquals(false, result)
     }
 }
 

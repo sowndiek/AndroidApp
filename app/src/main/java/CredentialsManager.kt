@@ -7,6 +7,9 @@ class CredentialsManager {
     private val validEmail = "test@te.st"
     private val validPassword = "1234"
 
+    private val registeredUsers = mutableMapOf<String, String>()
+
+
     fun isEmailValid(mail: String): Boolean {
         val regex = Regex(emailPattern)
         return regex.matches(mail)
@@ -19,5 +22,15 @@ class CredentialsManager {
     fun areCredentialsValid(email: String, password: String): Boolean {
         return email == validEmail && password == validPassword
     }
+
+    fun register(email: String, password: String, fullName: String, phone: String): Boolean {
+        // Check if the email is already registered
+        if (registeredUsers.containsKey(email)) {
+            return false // Email is already taken
+        }
+        registeredUsers[email] = password
+        return true
+    }
+
 }
 

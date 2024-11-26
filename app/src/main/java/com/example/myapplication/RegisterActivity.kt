@@ -9,13 +9,17 @@ import android.text.style.ForegroundColorSpan
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.textfield.TextInputEditText
+
 
 class RegisterActivity : AppCompatActivity() {
+    private val credentialsManager = CredentialsManager()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -25,11 +29,47 @@ class RegisterActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        val fullNameEditText = findViewById<TextInputEditText>(R.id.textInputEditFullName)
+        val emailEditText = findViewById<TextInputEditText>(R.id.textInputEditValidEmail)
+        val phoneEditText = findViewById<TextInputEditText>(R.id.textInputEditPhoneNum)
+        val passwordEditText = findViewById<TextInputEditText>(R.id.textInputEditStrongPasswrd)
+
         // Set up the button click listener to navigate to Create_Account2 activity
         val button = findViewById<Button>(R.id.buttonNext)
         button.setOnClickListener {
             val intent = Intent(this, Create_Account2::class.java)
             startActivity(intent)
+            val email = emailEditText.text.toString()
+            val password = passwordEditText.text.toString()
+            val fullName = fullNameEditText.text.toString()
+            val phone = phoneEditText.text.toString()
+
+            // Validate input
+            if (email.isBlank() || password.isBlank() || fullName.isBlank() || phone.isBlank()) {
+                // Show an error message if any field is empty
+                Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            if (!credentialsManager.isEmailValid(email)) {
+                // Show an error message if the email is invalid
+                Toast.makeText(this, "Invalid email format", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Attempt to register using CredentialsManager
+            val isRegistered = credentialsManager.register(fullName, email, phone, password)
+            if (isRegistered) {
+                // Registration successful: Navigate to Login screen
+                Toast.makeText(this, "Registration successful! Please log in.", Toast.LENGTH_SHORT)
+                    .show()
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish() // Close the RegisterActivity after successful registration
+            } else {
+                // Registration failed (e.g., email already exists)
+                Toast.makeText(this, "Email is already registered", Toast.LENGTH_SHORT).show()
+            }
         }
         // Set up the clickable "Log in" part of the TextView
         val newMemberTextView =
