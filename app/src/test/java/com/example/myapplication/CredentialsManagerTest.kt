@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import com.example.myapplication.com.example.myapplication.CredentialsManager
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Before
@@ -67,8 +68,8 @@ class CredentialsManagerTest {
 
         // Register a new account
         val result = credentialsManager.register(
-            fullName = "John Doe",
-            email = "unique@example.com",
+            fullName = "Mariia Lytvyn",
+            email = "test@example.com",
             phone = "123456789",
             password = "securePassword123"
         )
@@ -83,14 +84,14 @@ class CredentialsManagerTest {
 
         // Register the same email twice
         credentialsManager.register(
-            fullName = "John Doe",
-            email = "duplicate@example.com",
+            fullName = "Mariia Lytvyn",
+            email = "test@example.com",
             phone = "123456789",
             password = "securePassword123"
         )
         val result = credentialsManager.register(
-            fullName = "Jane Doe",
-            email = "duplicate@example.com",
+            fullName = "Mariia Lytvyn",
+            email = "test@example.com",
             phone = "987654321",
             password = "differentPassword123"
         )

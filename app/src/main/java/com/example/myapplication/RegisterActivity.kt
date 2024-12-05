@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.myapplication.com.example.myapplication.CredentialsManager
 import com.google.android.material.textfield.TextInputEditText
 
 
@@ -34,10 +35,10 @@ class RegisterActivity : AppCompatActivity() {
         val phoneEditText = findViewById<TextInputEditText>(R.id.textInputEditPhoneNum)
         val passwordEditText = findViewById<TextInputEditText>(R.id.textInputEditStrongPasswrd)
 
-        // Set up the button click listener to navigate to Create_Account2 activity
+        // Set up the button click listener to navigate to UnnecessaryYet activity
         val button = findViewById<Button>(R.id.buttonNext)
         button.setOnClickListener {
-            val intent = Intent(this, Create_Account2::class.java)
+            val intent = Intent(this, UnnecessaryYet::class.java)
             startActivity(intent)
             val email = emailEditText.text.toString()
             val password = passwordEditText.text.toString()
@@ -63,7 +64,7 @@ class RegisterActivity : AppCompatActivity() {
                 // Registration successful: Navigate to Login screen
                 Toast.makeText(this, "Registration successful! Please log in.", Toast.LENGTH_SHORT)
                     .show()
-                val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
                 finish() // Close the RegisterActivity after successful registration
             } else {
@@ -92,7 +93,7 @@ class RegisterActivity : AppCompatActivity() {
         spannableString.setSpan(object : ClickableSpan() {
             override fun onClick(widget: View) {
                 // Navigate to RegisterActivity on click
-                val intent = Intent(this@RegisterActivity, MainActivity::class.java)
+                val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
                 startActivity(intent)
             }
         }, startIndex, endIndex, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE)

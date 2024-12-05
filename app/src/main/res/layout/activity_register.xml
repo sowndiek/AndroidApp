@@ -6,7 +6,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Create_Account2">
+    tools:context=".UnnecessaryYet">
 
     <ImageView
         android:id="@+id/mainPic"
@@ -155,7 +155,7 @@
         android:layout_marginBottom="23dp"
         android:backgroundTint="#6C63FF"
         android:drawableEnd="@drawable/vector"
-        android:text="Next"
+        android:text="Register"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@id/alreadyAMember"
         app:layout_constraintEnd_toEndOf="parent"

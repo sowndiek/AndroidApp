@@ -14,10 +14,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.myapplication.com.example.myapplication.CredentialsManager
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
-class MainActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
 
     private val credentialsManager = CredentialsManager()
 
@@ -98,7 +99,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun navigateToCreateAccount2() {
-        val intent = Intent(this, Create_Account2::class.java)
+        val intent = Intent(this, UnnecessaryYet::class.java)
         startActivity(intent)
         finish() // Optional: Close this activity
     }
@@ -122,7 +123,7 @@ class MainActivity : AppCompatActivity() {
         // Make "Register now" clickable and handle click
         spannableString.setSpan(object : ClickableSpan() {
             override fun onClick(widget: View) {
-                val intent = Intent(this@MainActivity, RegisterActivity::class.java)
+                val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
                 startActivity(intent)
             }
         }, startIndex, endIndex, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE)
