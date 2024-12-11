@@ -7,6 +7,10 @@ class CredentialsManager {
     private val validEmail = "test@te.st"
     private val validPassword = "1234"
 
+    val credentials = mutableMapOf(
+        Pair("test@te.st", "1234")
+    )
+
     fun isEmailValid(mail: String): Boolean {
         val regex = Regex(emailPattern)
         return regex.matches(mail)
@@ -18,6 +22,21 @@ class CredentialsManager {
 
     fun areCredentialsValid(email: String, password: String): Boolean {
         return email == validEmail && password == validPassword
+    }
+
+    fun checkIfEmailExists(email:String):Boolean{
+        return credentials.contains(email.lowercase())
+    }
+
+    fun register(fullName:String, email: String,phoneNumber:String,password: String): Boolean{
+        if (isEmailValid(email) && isPasswordValid(password)){
+            credentials[email.lowercase()] = password
+            return true
+        }
+        return false
+    }
+    fun login(email:String,password: String) : Boolean{
+        return checkIfEmailExists(email) && credentials[email.lowercase()] == password
     }
 }
 
