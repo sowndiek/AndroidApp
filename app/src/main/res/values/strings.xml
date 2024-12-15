@@ -13,4 +13,7 @@
     <string name="fragment_main">Fragment Main</string>
     <string name="email_exists_error">Email exists</string>
     <string name="bad_password_error">Wrong password</string>
+    <string name="heart_shaped_icon">heart shaped icon</string>
+    <string name="sharing_icon">sharing icon</string>
+    <string name="meal_image">An image of a meal</string>
 </resources>
