@@ -1,8 +1,11 @@
 package com.example.myapplication
 
+import android.content.Intent
+
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.commit
@@ -26,10 +29,8 @@ class FragmentAuthActivity :
         }
     }
     override fun onLoginPressed() {
-        supportFragmentManager.commit {
-            replace<MainFragment>(R.id.fragmentContainerView)
-            addToBackStack(null)
-        }
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
     }
     override fun onRegisterPressed() {
         supportFragmentManager.commit {

@@ -1,133 +1,101 @@
 package com.example.myapplication
 
-import android.content.Intent
 import android.os.Bundle
-import android.text.SpannableString
-import android.text.method.LinkMovementMethod
-import android.text.style.ClickableSpan
-import android.text.style.ForegroundColorSpan
+import android.view.LayoutInflater
 import android.view.View
-import android.widget.Button
+import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
-class MainActivity : AppCompatActivity() {
-
-    private val credentialsManager = CredentialsManager()
-
-    // Properties for views using custom getters
-    private val emailInputLayout: TextInputLayout
-        get() = findViewById(R.id.emailTextInputLayout)
-
-    private val emailEditText: TextInputEditText
-        get() = findViewById(R.id.emailEditText)
-
-    private val passwordInputLayout: TextInputLayout
-        get() = findViewById(R.id.passwordTextInputLayout)
-
-    private val passwordEditText: TextInputEditText
-        get() = findViewById(R.id.passwordEditText)
-
-    private val nextButton: Button
-        get() = findViewById(R.id.buttonNext)
-
-    private val newMemberTextView: TextView
-        get() = findViewById(R.id.newMember)
-
+class MainActivity : AppCompatActivity(), RecipeAdapter.EventHandler {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
-
-        // Set up edge-to-edge layout
-        setupEdgeToEdgeLayout()
-
-        // Set up the button click listener to handle login
-        nextButton.setOnClickListener {
-            validateAndLogin()
-        }
-
-        // Set up the "Register now" clickable span
-        setupRegisterNowTextView()
-    }
-
-    private fun setupEdgeToEdgeLayout() {
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-    }
 
-    private fun validateAndLogin() {
-        val email = emailEditText.text.toString()
-        val password = passwordEditText.text.toString()
-
-        var isValid = true
-
-        // Validate email
-        if (!credentialsManager.isEmailValid(email)) {
-            emailInputLayout.error = "Invalid email format"
-            isValid = false
-        } else {
-            emailInputLayout.error = null
-        }
-
-        // Validate password
-        if (!credentialsManager.isPasswordValid(password)) {
-            passwordInputLayout.error = "Password cannot be empty"
-            isValid = false
-        } else {
-            passwordInputLayout.error = null
-        }
-
-        // Check hardcoded credentials if validation passed
-        if (isValid && credentialsManager.areCredentialsValid(email, password)) {
-            emailInputLayout.error = null
-            passwordInputLayout.error = null
-            navigateToCreateAccount2()
-        } else if (isValid) {
-            passwordInputLayout.error = "Invalid credentials"
-        }
-    }
-
-    private fun navigateToCreateAccount2() {
-        val intent = Intent(this, Create_Account2::class.java)
-        startActivity(intent)
-        finish() // Optional: Close this activity
-    }
-
-    private fun setupRegisterNowTextView() {
-        val fullText = "New Member? Register now"
-        val spannableString = SpannableString(fullText)
-
-        val registerNowColor = ContextCompat.getColor(this, R.color.blue)
-        val startIndex = fullText.indexOf("Register now")
-        val endIndex = startIndex + "Register now".length
-
-        // Apply color span
-        spannableString.setSpan(
-            ForegroundColorSpan(registerNowColor),
-            startIndex,
-            endIndex,
-            SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE
+        val recipeList = findViewById<RecyclerView>(R.id.recipes_list)
+        val recipes = listOf(
+            Recipe(1, "Recipe 1", "Description of Recipe 1"),
+            Recipe(2, "Recipe 2", "Description of Recipe 2"),
+            Recipe(3, "Recipe 3", "Description of Recipe 3"),
+            Recipe(4, "Recipe 4", "Description of Recipe 4")
         )
+        recipeList.adapter = RecipeAdapter(recipes, this)
+        recipeList.layoutManager = LinearLayoutManager(this)
 
-        // Make "Register now" clickable and handle click
-        spannableString.setSpan(object : ClickableSpan() {
-            override fun onClick(widget: View) {
-                val intent = Intent(this@MainActivity, RegisterActivity::class.java)
-                startActivity(intent)
-            }
-        }, startIndex, endIndex, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE)
-        // Set the spannable text to the TextView and enable link movement
-        newMemberTextView.text = spannableString
-        newMemberTextView.movementMethod = LinkMovementMethod.getInstance()
+
+    }
+
+    override fun onRecipeClicked(recipe: Recipe) {
+        Toast.makeText(this, "Pressed recipe with id:${recipe.id}", Toast.LENGTH_LONG).show()
+    }
+
+    override fun onLikeClicked(recipe: Recipe) {
+        Toast.makeText(this, "Pressed like of recipe with id:${recipe.id}", Toast.LENGTH_LONG)
+            .show()
+    }
+
+    override fun onShareClicked(recipe: Recipe) {
+        Toast.makeText(this, "Pressed share of recipe with id:${recipe.id}", Toast.LENGTH_LONG)
+            .show()
+    }
+
+
+}
+
+class RecipeAdapter(private val recipes: List<Recipe>, private val eventHandler: EventHandler) :
+    RecyclerView.Adapter<RecipeAdapter.ViewHolder>() {
+    interface EventHandler {
+        fun onRecipeClicked(recipe: Recipe)
+        fun onLikeClicked(recipe: Recipe)
+        fun onShareClicked(recipe: Recipe)
+    }
+
+
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        private val title: TextView = view.findViewById(R.id.recipe_title)
+        private val description: TextView = view.findViewById(R.id.recipe_description)
+        val shareButton: ImageButton = view.findViewById(R.id.share_recipe)
+        val likeButton: ImageButton = view.findViewById(R.id.like_recipe)
+        fun setRecipe(recipe: Recipe) {
+            title.text = recipe.title
+            description.text = recipe.description
+        }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_recipe, parent, false)
+        return ViewHolder(view)
+    }
+
+    override fun getItemCount(): Int {
+        return recipes.count()
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.setRecipe(recipes[position])
+        holder.itemView.setOnClickListener {
+            eventHandler.onRecipeClicked(recipes[position])
+        }
+        holder.shareButton.setOnClickListener {
+            eventHandler.onShareClicked(recipes[position])
+        }
+        holder.likeButton.setOnClickListener {
+            eventHandler.onLikeClicked(recipes[position])
+        }
     }
 }
+
+data class Recipe(val id: Int, val title: String, val description: String)
